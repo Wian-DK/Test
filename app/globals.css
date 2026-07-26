@@ -1,0 +1,378 @@
+:root {
+  --paper: #f4f5ef;
+  --ink: #17241f;
+  --muted: #68716d;
+  --green: #17633f;
+  --green-dark: #0f4c31;
+  --green-soft: #e4eee6;
+  --line: #cfd5cc;
+  --card: rgba(255, 255, 255, 0.86);
+  --red: #b64233;
+  --shadow: 0 16px 45px rgba(26, 42, 34, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 83% 12%, rgba(28, 96, 63, 0.035), transparent 27rem),
+    var(--paper);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.pageShell {
+  width: min(1160px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 62px 0 40px;
+}
+
+.hero {
+  max-width: 655px;
+}
+
+.eyebrow,
+.sectionKicker {
+  color: var(--green);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.hero h1 {
+  margin: 18px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(44px, 5vw, 67px);
+  font-weight: 500;
+  line-height: 0.97;
+  letter-spacing: -0.035em;
+}
+
+.hero h1 em {
+  color: var(--green);
+  font-weight: 500;
+}
+
+.heroCopy {
+  max-width: 610px;
+  margin: 0;
+  color: #5b6460;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.notice {
+  margin-top: 20px;
+  padding: 2px 0 2px 15px;
+  border-left: 2px solid #c9d3c9;
+  color: #89918d;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rule {
+  height: 1px;
+  margin: 38px 0 40px;
+  background: var(--line);
+}
+
+.worksheetGrid {
+  display: grid;
+  grid-template-columns: 365px minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.inputsPanel {
+  min-width: 0;
+}
+
+.statusLabel,
+.fieldLabel {
+  display: block;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.statusLabel {
+  margin: 18px 0 8px;
+}
+
+.fieldLabel small {
+  color: #959d98;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.statusGrid button {
+  min-height: 41px;
+  border: 1px solid #c7cec6;
+  border-radius: 7px;
+  color: #5c6561;
+  background: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: 120ms ease;
+}
+
+.statusGrid button:hover {
+  border-color: #8ba696;
+}
+
+.statusGrid button.active {
+  border-color: var(--green);
+  color: white;
+  background: var(--green);
+}
+
+.miniRule {
+  height: 1px;
+  margin: 24px 0 26px;
+  background: var(--line);
+}
+
+.field,
+.fileField {
+  display: block;
+  margin-top: 19px;
+}
+
+.moneyInputWrap {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  min-height: 47px;
+  border: 1px solid #c4ccc3;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.68);
+  overflow: hidden;
+}
+
+.currencyMark {
+  padding-left: 13px;
+  color: #9aa29e;
+}
+
+.moneyInputWrap input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 12px 13px 12px 8px;
+  color: var(--ink);
+  background: transparent;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 15px;
+}
+
+.moneyInputWrap:focus-within {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(23, 99, 63, 0.08);
+}
+
+.fileField {
+  margin-top: 18px;
+}
+
+.uploadBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px dashed #c4ccc3;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.54);
+  overflow: hidden;
+  position: relative;
+}
+
+.uploadBox input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.uploadButton {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #e6e8e3;
+  font-size: 12px;
+}
+
+.fileName {
+  min-width: 0;
+  color: #7f8883;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resultsCard {
+  position: sticky;
+  top: 24px;
+  padding: 30px;
+  border: 1px solid #d5dbd3;
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+}
+
+.resultSection {
+  margin-top: 30px;
+}
+
+.sectionKicker.green {
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.resultRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  min-height: 57px;
+  border-bottom: 1px solid #d9ddd7;
+  color: #34403b;
+  font-size: 14px;
+}
+
+.resultRow small {
+  display: block;
+  margin-top: 4px;
+  color: #989f9b;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+}
+
+.resultRow > :last-child {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  color: #1c2822;
+  font-size: 14px;
+}
+
+.resultRow.strong {
+  font-weight: 700;
+}
+
+.resultRow .negative {
+  color: var(--red);
+}
+
+.finalBox {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  margin-top: 23px;
+  padding: 24px 28px;
+  border-radius: 14px;
+}
+
+.finalBox.refund {
+  border: 1px solid #c9dbce;
+  background: var(--green-soft);
+}
+
+.finalBox.owed {
+  border: 1px solid #e5cbc5;
+  background: #f6e8e4;
+}
+
+.finalBox h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.finalBox p {
+  max-width: 350px;
+  margin: 7px 0 0;
+  color: #69726d;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.finalBox strong {
+  color: var(--green);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(31px, 4vw, 47px);
+}
+
+.finalBox.owed strong {
+  color: var(--red);
+}
+
+footer {
+  margin: 32px 0 10px 409px;
+  color: #818985;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 850px) {
+  .pageShell {
+    width: min(100% - 28px, 680px);
+    padding-top: 38px;
+  }
+
+  .worksheetGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .resultsCard {
+    position: static;
+  }
+
+  footer {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .statusGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resultsCard {
+    padding: 20px;
+  }
+
+  .finalBox {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 21px;
+  }
+}
