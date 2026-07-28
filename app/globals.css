@@ -9,6 +9,28 @@
   --card: rgba(255, 255, 255, 0.86);
   --red: #b64233;
   --shadow: 0 16px 45px rgba(26, 42, 34, 0.08);
+  --page-glow: rgba(28, 96, 63, 0.035);
+  --focus-ring: rgba(23, 99, 63, 0.08);
+  --control-hover: #8ba696;
+  --refund-border: #c9dbce;
+  --result-line: #d9ddd7;
+}
+
+:root[data-colour-scheme="light-blue"] {
+  --paper: #f2f8fc;
+  --ink: #152b3a;
+  --muted: #647681;
+  --green: #287fa8;
+  --green-dark: #1d6588;
+  --green-soft: #e1f2fa;
+  --line: #c8dce7;
+  --card: rgba(255, 255, 255, 0.88);
+  --shadow: 0 16px 45px rgba(28, 83, 111, 0.1);
+  --page-glow: rgba(71, 170, 214, 0.13);
+  --focus-ring: rgba(40, 127, 168, 0.13);
+  --control-hover: #6ea9c3;
+  --refund-border: #bddce9;
+  --result-line: #d4e3ea;
 }
 
 * {
@@ -23,9 +45,10 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 83% 12%, rgba(28, 96, 63, 0.035), transparent 27rem),
+    radial-gradient(circle at 83% 12%, var(--page-glow), transparent 27rem),
     var(--paper);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 button,
@@ -37,6 +60,56 @@ input {
   width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
   padding: 62px 0 40px;
+}
+
+.schemeControl {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.schemeControl button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--card);
+  box-shadow: 0 3px 12px rgba(24, 56, 73, 0.05);
+  cursor: pointer;
+  transition: border-color 120ms ease, transform 120ms ease;
+}
+
+.schemeControl button:hover {
+  border-color: var(--control-hover);
+  transform: translateY(-1px);
+}
+
+.schemeControl button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.schemeSwatch {
+  width: 13px;
+  height: 13px;
+  border: 1px solid rgba(21, 43, 58, 0.12);
+  border-radius: 50%;
+  background: #87cbea;
+  box-shadow: inset 0 0 0 3px #dff3fc;
+}
+
+.schemeControl button.active .schemeSwatch {
+  background: var(--green);
 }
 
 .hero {
@@ -137,7 +210,7 @@ input {
 }
 
 .statusGrid button:hover {
-  border-color: #8ba696;
+  border-color: var(--control-hover);
 }
 
 .statusGrid button.active {
@@ -187,7 +260,7 @@ input {
 
 .moneyInputWrap:focus-within {
   border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(23, 99, 63, 0.08);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .fileField {
@@ -258,7 +331,7 @@ input {
   gap: 18px;
   align-items: center;
   min-height: 57px;
-  border-bottom: 1px solid #d9ddd7;
+  border-bottom: 1px solid var(--result-line);
   color: #34403b;
   font-size: 14px;
 }
@@ -296,7 +369,7 @@ input {
 }
 
 .finalBox.refund {
-  border: 1px solid #c9dbce;
+  border: 1px solid var(--refund-border);
   background: var(--green-soft);
 }
 
@@ -358,6 +431,11 @@ footer {
 }
 
 @media (max-width: 520px) {
+  .schemeControl {
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
   .hero h1 {
     font-size: 43px;
   }

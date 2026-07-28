@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import {
   calculateFederalTax,
   FilingStatus,
@@ -95,8 +95,14 @@ function ResultRow({
 export default function TaxWorkbook() {
   const [inputs, setInputs] = useState<TaxInputs>(initialInputs);
   const [selectedFile, setSelectedFile] = useState<string>("");
+  const [isLightBlue, setIsLightBlue] = useState(false);
 
   const result = useMemo(() => calculateFederalTax(inputs), [inputs]);
+
+  useEffect(() => {
+    const scheme = isLightBlue ? "light-blue" : "green";
+    document.documentElement.dataset.colourScheme = scheme;
+  }, [isLightBlue]);
 
   const setNumber = (key: keyof TaxInputs, value: number) => {
     setInputs((current) => ({ ...current, [key]: value }));
@@ -110,6 +116,20 @@ export default function TaxWorkbook() {
 
   return (
     <main className="pageShell">
+      <div className="schemeControl" aria-label="Colour scheme">
+        <span>Colour scheme</span>
+        <button
+          type="button"
+          className={isLightBlue ? "active" : ""}
+          aria-pressed={isLightBlue}
+          aria-label={isLightBlue ? "Switch to green" : "Switch to light blue"}
+          onClick={() => setIsLightBlue((current) => !current)}
+        >
+          <span className="schemeSwatch" aria-hidden="true" />
+          {isLightBlue ? "Light blue" : "Switch to light blue"}
+        </button>
+      </div>
+
       <section className="hero">
         <div className="eyebrow">FEDERAL TAX WORKSHEET · TAX YEAR 2026</div>
         <h1>
